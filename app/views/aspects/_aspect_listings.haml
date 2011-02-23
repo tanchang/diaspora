@@ -10,7 +10,9 @@
   - for aspect in @all_aspects
     = render 'aspects/aspect', :aspect => aspect, :contacts => aspect.contacts.reject{|x| x.pending == true}
   %li
-    = link_to '+ add new aspect', '#add_aspect_pane', :class => "add_aspect_button", :rel => 'facebox'
+    = link_to '+ new aspect', '#add_aspect_pane', :class => "add_aspect_button", :rel => 'facebox'
+  %li
+    = link_to '+ new contact', '#add_aspect_pane', :class => "add_aspect_button", :rel => 'facebox'
 
   .facebox_content
     #add_aspect_pane

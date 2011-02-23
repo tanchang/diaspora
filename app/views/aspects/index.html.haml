@@ -9,7 +9,27 @@
 .span-4.append-1
   = render 'aspects/aspect_listings', :aspects => @aspects, :contacts => @contacts
 
-.span-13.append-1
+  %br
+
+  #left_search
+    = form_tag(people_path, :method => 'get', :id => "global_search_form") do
+      = text_field_tag 'q', nil, :placeholder => 'People', :type => 'search', :results => 5
+
+  %br
+
+  - if @notification_count > 0 || @request_count > 0
+    #new_requests
+      - if @request_count > 0
+        %h4
+          = new_request_link(@request_count)
+
+  /.section
+  /  %h5
+  /    = t('shared.invitations.invite_your_friends')
+  /  = render "shared/invitations", :invites => @invites
+
+
+.span-13.last
   %h3{:style => 'margin-bottom:0;'}
     Recent Activity
 
@@ -21,22 +41,4 @@
       :aspect_ids => @aspect_ids,
       :posts => @posts,
       :fakes => @fakes
-
-.span-5.last
-  - if @notification_count > 0 || @request_count > 0
-    .section
-      #new_requests
-        - if @request_count > 0
-          %h4
-            = new_request_link(@request_count)
-
-      #new_notifications
-        - if @notification_count > 0
-          = image_tag 'icons/mail_big.png', :height => 20, :width => 20, :style=>"margin-top:3px;"
-          %h4
-            = new_notification_link(@notification_count)
-
-  .section
-    %h4= t('shared.invitations.invite_your_friends')
-    = render "shared/invitations", :invites => @invites
 

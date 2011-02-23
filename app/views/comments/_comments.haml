@@ -3,6 +3,11 @@
 -#   the COPYRIGHT file.
 
 
+- if comments.size > 0
+  .commenters
+    - for person in comments.map{|c| c.person}.uniq
+      = person_image_link(person)
+
 - unless defined?(always_expanded) && always_expanded
   %ul.show_comments{:class => ("hidden" if comments.size == 0)}
     %li

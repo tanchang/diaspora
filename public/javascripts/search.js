@@ -1,7 +1,7 @@
 var Search = {
   source : '/people.json',
 
-  selector : '#global_search input#q',
+  selector : '#left_search input#q',
   formatItem: function(row){
     if(row['search']) {
       return $.mustache(Diaspora.widgets.i18n.t('search_for'), { name: row['name'] });
